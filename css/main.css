@@ -1,0 +1,28 @@
+html,
+body {
+  background-image: linear-gradient(
+    to left bottom,
+    #000000,
+    #0a0808,
+    #12100f,
+    #171514,
+    #1c1a18,
+    #23211e,
+    #292824,
+    #2f2f2a,
+    #3a3a33,
+    #46453c,
+    #525045,
+    #5e5c4f
+  );
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  /* background-repeat: no-repeat; */
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  color: white;
+}
