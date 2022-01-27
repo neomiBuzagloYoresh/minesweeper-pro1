@@ -8,11 +8,22 @@
     <link rel="stylesheet" href="css/main.css" />
   </head>
   <body onload="initGame()">
-    <h1>START</h1>
-
+    <div class="data">
+      <div id="timer" class="data-child">Time: 00.000</div>
+      <div id="live" class="data-child">life</div>
+      <div id="reset-button" class="data-child" onclick="resetGame()">
+        reset
+      </div>
+    </div>
     <table border="1" cellpadding="20">
       <tbody class="board"></tbody>
     </table>
+    <div class="modal"></div>
+    <div class="levels">
+      <button onclick="getLevel(4,2)">Beginner</button>
+      <button onclick="getLevel(8,12)">Medium</button>
+      <button onclick="getLevel(12,30)">Expert</button>
+    </div>
 
     <script src="js/utils.js"></script>
     <script src="js/main.js"></script>
