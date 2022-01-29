@@ -15,6 +15,15 @@ function countNeighbors(rowIdx, colIdx) {
     return neighborsCount;
 }
 
+function setMinesNegsCount() {
+
+    for (var i = 0; i < gBoard.length; i++) {
+        for (var j = 0; j < gBoard[0].length; j++) {
+            gBoard[i][j].minesAroundCount = countNeighbors(i, j);
+        }
+    }
+}
+
 function shownNeighbors(rowIdx, colIdx) {
     for (var i = rowIdx - 1; i <= rowIdx + 1; i++) {
         if (i < 0 || i >= gBoard.length) continue;
@@ -23,24 +32,31 @@ function shownNeighbors(rowIdx, colIdx) {
             if (gBoard[i][j].isMine) continue;
             if (gBoard[i][j].isShown || gBoard[i][j].isMarked) continue;
 
-
             var cellCurrId = `#spot-${i}-${j}`
-            var elCurrCell = document.querySelector(cellCurrId)
-            gBoard[i][j].isShown = true
+            var elCurrCell = document.querySelector(cellCurrId);
+
+            gBoard[i][j].isShown = true;
             gGame.shownCount++
-            console.log(' gGame.shownCount++', gGame.shownCount);
-            elCurrCell.innerHTML = gBoard[i][j].minesAroundCount;
+            elCurrCell.classList.add('cellColor');
+            if (gBoard[i][j].minesAroundCount === 0) elCurrCell.innerText = '';
+
+            else elCurrCell.innerText = gBoard[i][j].minesAroundCount;
+
+
         }
     }
 }
 
-function randomMines() {
-    for (var i = 0; i < gLevel.MINES;) {
+
+function randomMines(rowIndex, colIndex) {
+    for (var i = 0; i < gLevel.MINES; i++) {
         var randomPlace = gBoard[getRandomInt(0, gLevel.SIZE - 1)]
         [getRandomInt(0, gLevel.SIZE - 1)]
+        if (randomPlace === gBoard[rowIndex][colIndex]) continue;
+
         if (randomPlace.isMine !== true) {
             randomPlace.isMine = true
-            i++
+            setMinesNegsCount()
         }
     }
 }
@@ -54,23 +70,15 @@ function getRandomInt(min, max) {
 
 
 
+function presentTimer() {
+    var currTime = (Date.now() - gStartTime) / 1000;
+    const elTimer = document.querySelector('#timer span');
+    elTimer.innerText = `${currTime.toFixed(2)}`;
+}
 
-// // location such as: {i: 2, j: 7}
-// function renderCell(location, value) {
-//     // Select the elCell and set the value
-//     var elCell = document.querySelector(`.currCell-${location.i}-${location.j}`);
-//     elCell.innerHTML = value;
-// }
+function startTimer() {
+    gFirstClick = false;
 
-// function presentTimer() {
-//     var currTime = (Date.now() - gStartTime) / 1000;
-//     const elTimer = document.querySelector('.timer');
-//     elTimer.innerText = `Timer: ${currTime}`;
-// }
-
-// function startTimer() {
-//     gIsFirstClick = false;
-//     console.log('gIsFirstClick', gIsFirstClick);
-//     gStartTime = Date.now();
-//     gTimerInterval = setInterval(presentTimer, 1);
-// }
+    gStartTime = Date.now();
+    gTimerInterval = setInterval(presentTimer, 1);
+}

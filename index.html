@@ -8,22 +8,25 @@
     <link rel="stylesheet" href="css/main.css" />
   </head>
   <body onload="initGame()">
-    <div class="data">
-      <div id="timer" class="data-child">Time: 00.000</div>
-      <div id="live" class="data-child">life</div>
-      <div id="reset-button" class="data-child" onclick="resetGame()">
-        reset
-      </div>
+    <h1>MineSweeper</h1>
+    <div class="modal"></div>
+
+    <div class="data-panel">
+      <h3 id="timer">Time: <span>00.000</span></h3>
+      <h3 id="live">life</h3>
+      <h3 id="reset-button" onclick="resetGame()"></h3>
     </div>
     <table border="1" cellpadding="20">
       <tbody class="board"></tbody>
     </table>
-    <div class="modal"></div>
+
     <div class="levels">
       <button onclick="getLevel(4,2)">Beginner</button>
       <button onclick="getLevel(8,12)">Medium</button>
       <button onclick="getLevel(12,30)">Expert</button>
     </div>
+
+    <footer>&#169; Neomi Buzaglo-Yoresh</footer>
 
     <script src="js/utils.js"></script>
     <script src="js/main.js"></script>
