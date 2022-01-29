@@ -50,12 +50,11 @@ function shownNeighbors(rowIdx, colIdx) {
 
 function randomMines(rowIndex, colIndex) {
     for (var i = 0; i < gLevel.MINES; i++) {
-        var randomPlace = gBoard[getRandomInt(0, gLevel.SIZE - 1)]
-        [getRandomInt(0, gLevel.SIZE - 1)]
+        var randomPlace = gBoard[getRandomInt(0, gLevel.SIZE - 1)][getRandomInt(0, gLevel.SIZE - 1)]
         if (randomPlace === gBoard[rowIndex][colIndex]) continue;
-
         if (randomPlace.isMine !== true) {
             randomPlace.isMine = true
+
             setMinesNegsCount()
         }
     }

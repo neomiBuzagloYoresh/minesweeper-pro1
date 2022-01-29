@@ -104,7 +104,7 @@ function cellClicked(elCurrCell, i, j) {
     if (currCell.isMine) {
         elCurrCell.style.backgroundColor = '#c0464675';
         elCurrCell.innerText = MINE;
-        gGame.shownCount++
+        // gGame.shownCount++
 
         lives--;
 
@@ -113,6 +113,7 @@ function cellClicked(elCurrCell, i, j) {
     } else {
         cellText = currCell.minesAroundCount;
         elCurrCell.innerText = cellText;
+        gGame.shownCount++
 
         if (currCell.minesAroundCount === 0) {
             cellText = '';
@@ -189,8 +190,8 @@ function checkGameOver(i, j) {
 
     }
 
-    if ((cellAmount === gGame.shownCount + gLevel.MINES) || (gGame.shownCount + gGame.markedCount === cellAmount)) {
-
+    // if ((cellAmount === gGame.shownCount + gLevel.MINES) || (gGame.shownCount + gGame.markedCount === cellAmount)) {
+    if (cellAmount - gLevel.MINES === gGame.shownCount) {
         document.querySelector('.modal').style.visibility = 'visible';
         modal.innerText = "🏆Victory!!!🏆";
         elResetButton.style.display = 'block';
